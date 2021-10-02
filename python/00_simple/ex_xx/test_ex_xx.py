@@ -1,7 +1,7 @@
 import unittest
 import ex_xx_sol
 
-class Test_ex_11_sol(unittest.TestCase):
+class Test_ex_xx_sol(unittest.TestCase):
 
     def test_func(self):
         
