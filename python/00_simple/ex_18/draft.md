@@ -150,3 +150,68 @@ def MisterRobot(N, data): # N >= 4, len(data) = N
 ------------------------------------ == 5:57 ==
 
 
+
+134627  627 max[2]
+132467  462 max[1] mid[0]
+132467  324 max[2]
+132467  132 max[1] mid[2]! index тройки 0 ==> false
+
+
+1345627  627 max[2]        ind=4 
+1345627  562 max[1] mid[0] ind=3 ==> 256
+1342567  425 max[2]        ind=2 
+1342567  342 max[1] mid[0] ind=1 ==> 234
+1234567  123 max[2]        ind=0 
+                                 
+                                 
+                                 
+
+
+
+2341     134 max[2] mid[1] ind=1 ==> ind -= 1
+2134     213 max[2] mid[0] ind=0 ==> false
+
+2413     134 max[2] mid[1] ind=1 ==> ind -= 1
+2134     213 max[2] mid[0] ind=0 ==> false
+
+3241     124 max[2] ind=1 ==> ind -= 1
+3124     123 max[2] ind=0 ==> True
+
+
+1345267  267 max[2] ind=4 
+1345267  526 max[2] ind=3 
+1345267  245 max[2] ind=2 
+1324567  324 max[2] ind=1 
+1324567  213 max[2] ind=0 min[1] ==> false
+
+считываем список чисел
+перебор начинаем с последней тройки, т.е. ind=(N-2)-1; (N-2)-2; ...; 0
+    определяем max
+    пока не получим max==тройка[2]:
+        перестановка
+    определяем min
+    if ind==0:
+        если min==тройка[0]:
+            return True
+        else:
+            return False
+    ind -= 1
+
+
+def MisterRobot(N, data): # N >= 4, len(data) = N
+    cnt = N-3
+    while cnt >= 0:
+        curr_list = data[cnt:cnt+3]
+        curr_max = max(curr_list)
+        while curr_max != curr_list[2]:
+            curr_list = get_rotated(curr_list)
+        curr_min = min(curr_list)
+        # test print
+        print(curr_list)
+        if cnt == 0:
+            if curr_list[0] == curr_min:
+                return True
+            else:
+                return False
+        cnt -= 1
+

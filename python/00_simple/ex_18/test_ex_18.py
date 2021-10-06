@@ -21,10 +21,16 @@ class Test_ex_18_sol(unittest.TestCase):
 
     def test_(self):
         
-        self.assertTrue(ex_18_sol.MisterRobot(4, [0, 0, 0, 0])) # test 1
-        self.assertTrue(ex_18_sol.MisterRobot(4, [3, 2, 4, 1])) # test 2
+        self.assertTrue(ex_18_sol.MisterRobot(4, [0, 0, 0, 0])) # test 1.1
+        self.assertTrue(ex_18_sol.MisterRobot(4, [1, 2, 3, 4])) # test 1.2
+        self.assertTrue(ex_18_sol.MisterRobot(4, [3, 2, 4, 1])) # test 1.3
+        self.assertFalse(ex_18_sol.MisterRobot(4, [2, 4, 1, 3])) # test 2
+        self.assertTrue(ex_18_sol.MisterRobot(5, [1, 2, 3, 4, 5])) # test 2.1
+        self.assertTrue(ex_18_sol.MisterRobot(5, [1, 2, 4, 5, 3])) # test 2.2
+        self.assertTrue(ex_18_sol.MisterRobot(5, [1, 3, 4, 5, 6])) # test 2.3
+        self.assertTrue(ex_18_sol.MisterRobot(5, [1, 3, 6, 2, 7])) # test 2.4
+        self.assertTrue(ex_18_sol.MisterRobot(6, [1, 3, 4, 6, 2, 7])) # test 2.4
         self.assertTrue(ex_18_sol.MisterRobot(7, [1, 3, 4, 5, 6, 2, 7])) # test 3
-        self.assertFalse(ex_18_sol.MisterRobot(4, [2, 4, 1, 3])) # test 4
 
 if __name__ == "__main__":
     unittest.main()

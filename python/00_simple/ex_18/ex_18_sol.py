@@ -19,21 +19,26 @@ def get_rotated(data, index):
     return data_mod
 
 def MisterRobot(N, data): # N >= 4, len(data) = N
+    if is_sort(data):
+        return True
+    else:
+        cnt = N-3
+        while cnt >= 0:
+            curr_list = data[cnt:cnt+3]
+            print('ind =', cnt, 'curr_list --', curr_list)
+            curr_max = max(curr_list)
+            while curr_max != curr_list[2]:
+                curr_list = get_rotated(curr_list, 0) # !! нужно обновлять исходный список data, когда curr_list[2] == curr_max
+            # test print
+            print('curr_list rotated --', curr_list)
+            if cnt == 0:
+                curr_min = min(curr_list)
+                if curr_list[0] == curr_min:
+                    return True
+                else:
+                    return False
+            cnt -= 1
 
-    val_list = []
-    
-    def brute_force(data, val_list):
-        if is_sort(data):
-            return True
-        elif data in val_list:
-            return False
-        else:
-            val_list.append(data)
-            result = False
-            for i in range(N-2):
-                if brute_force(get_rotated(data, i), val_list): # if True
-                    result = True
-                    break
-            return result
+#print(MisterRobot(7, [1, 3, 4, 5, 6, 2, 7]))
+print(MisterRobot(4, [3, 2, 4, 1]))
 
-    return brute_force(data, val_list)
