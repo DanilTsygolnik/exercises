@@ -25,7 +25,7 @@ def chains(L):
         if L[cnt] == L[cnt+1]:
             if chain_head == None: # если цепь только началась, то chain_head=None --> chain_head=cnt
                 chain_head = cnt
-            elif cnt == len(L)-2: # текущий эл-т последний эл-т
+            if cnt == len(L)-2: # текущий эл-т последний эл-т
                 chain_tail=cnt+1
                 coord.append([chain_head, chain_tail])
             # иначе двигаемся дальше по цепи
@@ -58,11 +58,25 @@ def get_data_templ(data_mess):
     return data_templ
 
 def ShopOLAP(N, data_mess): # получаем список строк, выводим список строк
+    # получить список, отсортированный в порядке убывания кол-ва проданных штук [[it_name, it_name_num, amount], [...], ...]
+    # список списков из data_templ, но отсортированный
+    amount_sorted = sorted(get_data_templ(data_mess), reverse=True, key=lambda x: x[2])
+    
+    amount_list = []
+    for i in amount_sorted: # проходим по каждому списку, чтобы найти цепочки повторяющихся значений amount
+        amount_list.append(i[2]) # индексы в amount_list соответствуют индексам в amount_sorted
 
-    #sorted_by_amount = sorted(get_data_templ(data_mess), reverse=True, key=lambda x:x[1])
-    #data_organized = sorted(sorted_by_amount, key=lambda x:x[0])
-    data_organized = sorted(sorted(get_data_templ(data_mess)), key=lambda x: ((x[2], reverse=True),x[0],x[1]))
-    return data_organized
+    # получаем координаты подсписков в amount_sorted, которые нужно отсортировать по именам
+    coord = chains(amount_list) # это [ [head, tail] [...] ...]
+
+    for i in coord:
+        curr_sort = sorted(amount_sorted[i[0]:i[1]+1], key=lambda x: (x[0], x[1]))
+        amount_sorted = amount_sorted[:i[0]] + curr_sort + amount_sorted[i[1]+1:]
+    # здесь должен получиться список списков нужного вида
+    #print(amount_sorted)
+
+    return amount_sorted
+    #return data_organized
 
 # дописать блок преобразования data_org=[[], [], ... []] в data_org=[str1, str2, ...] 
 #def get_output(data_org)
