@@ -14,7 +14,31 @@ def get_item_name_and_num(orig_name):
         item_data.append(orig_name)
         item_data.append(-1)
     return item_data
-        
+     
+
+def chains(L):
+    coord = []
+    chain_head = None
+    chain_tail = None
+    cnt = 0
+    while cnt < len(L)-1: # от 0 до предпоследнего включительно
+        if L[cnt] == L[cnt+1]:
+            if chain_head == None: # если цепь только началась, то chain_head=None --> chain_head=cnt
+                chain_head = cnt
+            elif cnt == len(L)-2: # текущий эл-т последний эл-т
+                chain_tail=cnt+1
+                coord.append([chain_head, chain_tail])
+            # иначе двигаемся дальше по цепи
+        else: 
+            if chain_head != None: # последний элемент цепи
+                chain_tail = cnt
+                coord.append([chain_head, chain_tail])
+                chain_head=None
+            # если chain_head==None, т.е. не в цепи, то ничего
+        cnt += 1
+    return coord
+
+
 
 def get_data_templ(data_mess):
     # создать пустой словарь
