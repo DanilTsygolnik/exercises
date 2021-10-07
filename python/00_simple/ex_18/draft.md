@@ -177,6 +177,10 @@ def MisterRobot(N, data): # N >= 4, len(data) = N
 3241     124 max[2] ind=1 ==> ind -= 1
 3124     123 max[2] ind=0 ==> True
 
+134627   627 max[2] ind=3 ==> ind -= 1
+134627   246 max[2] ind=2 ==> ind -= 1
+132467   324 max[2] ind=1 ==> ind -= 1
+132467   213 max[2] ind=0 data[0] != min ==> false
 
 1345267  267 max[2] ind=4 
 1345267  526 max[2] ind=3 
