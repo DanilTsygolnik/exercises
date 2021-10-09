@@ -1,12 +1,16 @@
 import unittest
-import ex_xx_sol
+import ex_20_sol
 
-class Test_ex_xx_sol(unittest.TestCase):
+class Test_ex_20_sol(unittest.TestCase):
 
-    def test_func(self):
+    def test_S_is_number(self):
         
-        self.assertEqual(ex_xx_sol.func(), )
+        self.assertTrue(ex_20_sol.S_is_number('5'))
+        self.assertFalse(ex_20_sol.S_is_number('xx'))
 
+    #def test_func(self):
+    #    
+    #    self.assertEqual(ex_20_sol.func(), )
 
 if __name__ == "__main__":
     unittest.main()
