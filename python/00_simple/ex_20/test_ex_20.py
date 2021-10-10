@@ -3,11 +3,6 @@ import ex_20_sol
 
 class Test_ex_20_sol(unittest.TestCase):
 
-    def test_S_is_number(self):
-        
-        self.assertTrue(ex_20_sol.S_is_number('5'))
-        self.assertFalse(ex_20_sol.S_is_number('xx'))
-
     def test_BastShoe(self):
         
         commands = [
@@ -78,15 +73,8 @@ class Test_ex_20_sol(unittest.TestCase):
         # BastShoe test
         ans_BastShoe=[]
 
-        curr_str = ''
-        undo_done = False
-        undo_log = []
-        redo_log = []
-
         for i in commands:
             ans_BastShoe.append(ex_20_sol.BastShoe(i))
-        print(ans_BastShoe)
-        self.maxDiff=None
         self.assertEqual(ans_BastShoe, answers)
 
 
