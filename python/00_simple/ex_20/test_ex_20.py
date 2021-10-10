@@ -13,7 +13,7 @@ class Test_ex_20_sol(unittest.TestCase):
         commands = [
                         '1 Привет', 
                         '1 , Мир!', 
-                        '1 ++ ', 
+                        '1 ++', 
                         '2 2', 
                         '4', 
                         '4', 
@@ -25,7 +25,7 @@ class Test_ex_20_sol(unittest.TestCase):
                         '2 100', 
                         '1 Привет', 
                         '1 , Мир!', 
-                        '1 ++ ', 
+                        '1 ++', 
                         '4', 
                         '4', 
                         '5', 
@@ -78,8 +78,15 @@ class Test_ex_20_sol(unittest.TestCase):
         # BastShoe test
         ans_BastShoe=[]
 
+        curr_str = ''
+        undo_done = False
+        undo_log = []
+        redo_log = []
+
         for i in commands:
             ans_BastShoe.append(ex_20_sol.BastShoe(i))
+        print(ans_BastShoe)
+        self.maxDiff=None
         self.assertEqual(ans_BastShoe, answers)
 
 
