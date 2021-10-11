@@ -38,13 +38,14 @@ class Test_ex_21_sol(unittest.TestCase):
         self.assertEqual(len(ex_21_sol.get_combos('1234')), fact(4))
         self.assertEqual(len(ex_21_sol.get_combos('12345')), fact(5))
 
-        # next: проверить работу на комбинациях с повторяющимися эл-тами
-
-
-    #def test_func(self):
-    #    
-    #    self.assertEqual(ex_21_sol.func(), )
-
+    def test_BiggerGreater(self):
+        
+        #suggested tests
+        self.assertEqual(ex_21_sol.BiggerGreater("fff"), '')
+        self.assertEqual(ex_21_sol.BiggerGreater("ая"), 'яа')
+        self.assertEqual(ex_21_sol.BiggerGreater("нклм"), "нкмл")
+        self.assertEqual(ex_21_sol.BiggerGreater("вибк"), "викб")
+        self.assertEqual(ex_21_sol.BiggerGreater("вкиб"), "ибвк")
 
 if __name__ == "__main__":
     unittest.main()

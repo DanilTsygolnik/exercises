@@ -17,3 +17,12 @@ def get_combos(string):
     combos_list = []
     combo_check(string)
     return combos_list
+
+def BiggerGreater(inp_string):
+    output = ''
+    combos = sorted(get_combos(inp_string))
+    for i in combos:
+        if i > inp_string:
+            output = i
+            break
+    return output
