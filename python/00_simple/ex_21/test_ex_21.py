@@ -40,12 +40,17 @@ class Test_ex_21_sol(unittest.TestCase):
 
     def test_BiggerGreater(self):
         
-        #suggested tests
+        # suggested tests
         self.assertEqual(ex_21_sol.BiggerGreater("fff"), '')
         self.assertEqual(ex_21_sol.BiggerGreater("ая"), 'яа')
         self.assertEqual(ex_21_sol.BiggerGreater("нклм"), "нкмл")
         self.assertEqual(ex_21_sol.BiggerGreater("вибк"), "викб")
         self.assertEqual(ex_21_sol.BiggerGreater("вкиб"), "ибвк")
+        # extra tests
+        self.assertEqual(ex_21_sol.BiggerGreater('aaabc'), 'aaacb')
+        self.assertEqual(ex_21_sol.BiggerGreater('acaba'), 'acbaa')
+        self.assertEqual(ex_21_sol.BiggerGreater('cbaaa'), '')
+
 
 if __name__ == "__main__":
     unittest.main()
