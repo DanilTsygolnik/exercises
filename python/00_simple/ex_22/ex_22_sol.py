@@ -20,8 +20,14 @@ def SherlockValidString(inp_string):
         if val[cnt] != val[cnt-1]:
             if del_not_used:
                 if abs(val[cnt] - val[cnt-1]) > 1:
-                    output = False
-                    break
+                    if val[cnt-1] == 1:
+                        val = val[:cnt-1] + val[cnt:]
+                        N -= 1
+                        cnt -= 2
+                        del_not_used = False
+                    else:
+                        output = False
+                        break
                 else:
                     if val[cnt] == 1:
                         val = val[:cnt] + val[cnt+1:]
