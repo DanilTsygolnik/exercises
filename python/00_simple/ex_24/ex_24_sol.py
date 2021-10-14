@@ -113,7 +113,15 @@ def turn_iter(matrix_src, N, M):
 
 
 def MatrixTurn(matrix, num_rows, num_cols, turns_cnt):
-    """ Rotate matrix clockwise several (turns_cnt) times """
-    if turns_cnt == 0:
-        return matrix
-    return MatrixTurn(turn_iter(matrix, num_rows, num_cols), num_rows, num_cols, turns_cnt-1)
+    """
+    Function rotates the matrix clockwise several (turns_cnt) times.
+    It overwrites original matrix.
+    """
+    templ = matrix
+    while turns_cnt > 0:
+        templ = turn_iter(templ, num_rows, num_cols)
+        turns_cnt -= 1
+    cnt = 0
+    while cnt < len(matrix):
+        matrix[cnt] = templ[cnt]
+        cnt += 1

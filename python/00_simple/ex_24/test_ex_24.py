@@ -51,7 +51,7 @@ class Test_ex_24_sol(unittest.TestCase):
         ref = ['8']
         self.assertEqual(ex_24_sol.get_right_col_as_row(4,4,matrix,1), ref)
 
-    def test_func(self): # iter_rotate()
+    def test_iter_rotate(self):
         
         matrix = [['1', '2', '3', '4'], 
                   ['2', '3', '8', '5'], 
@@ -97,12 +97,45 @@ class Test_ex_24_sol(unittest.TestCase):
 
     def test_MatrixTurn(self):
         
-        self.assertEqual(ex_24_sol.MatrixTurn(["123456", "234567", "345678", "456789"], 4,6, 1), ['212345', '343456', '456767', '567898'])
-        self.assertEqual(ex_24_sol.MatrixTurn(["123456", "234567", "345678", "456789"], 4,6, 3), ['432123', '565434', '676545', '789876'])
-        self.assertEqual(ex_24_sol.MatrixTurn(["12", "34"], 2,2, 1), ['31', '42'])
-        self.assertEqual(ex_24_sol.MatrixTurn(["12", "34"], 2,2, 4), ["12", "34"])
-        self.assertEqual(ex_24_sol.MatrixTurn(["123456", "234567", "345678", "456789"], 4,6, 16), ["123456", "234567", "345678", "456789"])
-        self.assertEqual(ex_24_sol.MatrixTurn(["000000", "111111", "000000", "111111", "000000", "111111"], 6,6, 1), ["100000", "001110", "111011", "001000", "100011", "111110"])
+        matrix = ["123456", "234567", "345678", "456789"]
+        ref = ['432123', '565434', '676545', '789876']
+        ex_24_sol.MatrixTurn(matrix, 4,6, 3)
+        self.assertEqual(matrix, ref)
+
+        matrix = ["123456", "234567", "345678", "456789"]
+        ref = ["123456", "234567", "345678", "456789"]
+        ex_24_sol.MatrixTurn(matrix, 4,6, 0)
+        self.assertEqual(matrix, ref)
+
+        matrix = ["123456", "234567", "345678", "456789"]
+        ref = ['212345', '343456', '456767', '567898']
+        ex_24_sol.MatrixTurn(matrix, 4,6, 1)
+        self.assertEqual(matrix, ref)
+
+        matrix = ["123456", "234567", "345678", "456789"]
+        ref = ['432123', '565434', '676545', '789876']
+        ex_24_sol.MatrixTurn(matrix, 4,6, 3)
+        self.assertEqual(matrix, ref)
+
+        matrix = ["12", "34"]
+        ref = ['31', '42']
+        ex_24_sol.MatrixTurn(matrix, 2,2, 1)
+        self.assertEqual(matrix, ref)
+
+        matrix = ["12", "34"]
+        ref = ["12", "34"]
+        ex_24_sol.MatrixTurn(matrix, 2,2, 4)
+        self.assertEqual(matrix, ref)
+
+        matrix = ["123456", "234567", "345678", "456789"]
+        ref = ["123456", "234567", "345678", "456789"]
+        ex_24_sol.MatrixTurn(matrix, 4,6, 16)
+        self.assertEqual(matrix, ref)
+
+        matrix = ["000000", "111111", "000000", "111111", "000000", "111111"]
+        ref = ["100000", "001110", "111011", "001000", "100011", "111110"]
+        ex_24_sol.MatrixTurn(matrix, 6,6, 1)
+        self.assertEqual(matrix, ref)
 
 
 if __name__ == "__main__":
