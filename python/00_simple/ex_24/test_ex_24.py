@@ -73,6 +73,17 @@ class Test_ex_24_sol(unittest.TestCase):
         ex_24_sol.iter_rotate(matrix, 4, 4, 1)
         self.assertEqual(matrix, ref_inner_ring)
 
+    def test_src_format(self):
+        
+        matrix = [['1', '2', '3', '4'], 
+                  ['2', '3', '8', '5'], 
+                  ['3', '0', '5', '6'], 
+                  ['4', '5', '6', '7']]
+
+        ref = ['1234', '2385', '3056', '4567']
+
+        self.assertEqual(ex_24_sol.src_format(matrix), ref)
+
     #def test_func(self):
     #    
     #    self.assertEqual(ex_24_sol.func(), )

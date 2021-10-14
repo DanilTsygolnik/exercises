@@ -34,8 +34,8 @@ def get_right_col_as_row(N,M,matrix,delta):
     return row
 
 def iter_rotate(matrix, N, M, delta):
-    # N - number of rows in matrix
-    # M - number of columns in matrix
+    # N - rows in matrix
+    # M - columns in matrix
 
     # horizontal segments of the "ring"
     top_row_templ = []
@@ -73,21 +73,27 @@ def iter_rotate(matrix, N, M, delta):
             matrix[matrix_row_cnt][M-1-delta] = i
         matrix_row_cnt  += 1
         col_ind_cnt += 1
-
     # no return, function changes initial matrix
 
+def src_format(matrix):
+    templ = []
+    for i in matrix:
+        curr_str = ''
+        for j in i:
+            curr_str += j
+        templ.append(curr_str)
+    return templ
 
-def turn_iter(matrix_src, num_rows, num_cols):
+def turn_iter(matrix_src, N, M):
     # convert 'strings' into ['s', 't', 'r', 'i', 'n', 'g', 's']
     matrix = prepare_matrix(matrix_src)
     # get dimensions of the rings to be rotated at each step
     rings = get_rings(num_rows, num_cols)
     for i in rings:
         curr_num_rows = i[0]
-        curr_num_cols = i[1]
-        delta = (curr_num_rows - num_rows) // 2
+        delta = (N - curr_num_rows) // 2
         #
-        iter_rotate(matrix, curr_num_rows, curr_num_cols, delta)
+        iter_rotate(matrix, N, M, delta)
     #
     return src_format(matrix)
 
