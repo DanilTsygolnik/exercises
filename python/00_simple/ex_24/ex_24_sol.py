@@ -10,6 +10,16 @@ def prepare_matrix(matrix_src):
         templ.append(curr_row)
     return templ
 
+def get_rings(N, M):
+    
+    def iter_rings(N, M, rings_list):
+        rings_list.append([N, M])
+        if N == 2 or M == 2:
+            return rings_list
+        else:
+            return iter_rings(N-2, M-2, rings_list)
+
+    return iter_rings(N, M, [])
 
 def turn_iter(matrix_src, num_rows, num_cols):
     # convert 'strings' into ['s', 't', 'r', 'i', 'n', 'g', 's']
