@@ -33,41 +33,47 @@ def get_right_col_as_row(N,M,matrix,delta):
         row += [matrix[i][M-1-delta]]
     return row
 
-def get_rotated_ring(matrix, new_columns, delta):
-    col_num = delta
-    for i in new_columns:
-        row_num = delta # нужно добавить переход от записи в столбец к записи строки, причем в зав-ти от левый/правый new_col
-        for j in i:
-            matrix[row_num][col_num] = j
-            row_num += 1
-        col_num += 1
-    # no return, function changes initial matrix
-
 def iter_rotate(matrix, N, M, delta):
     # N - number of rows in matrix
     # M - number of columns in matrix
 
-    # horizontal segments of the ring
-    top_row = []
+    # horizontal segments of the "ring"
+    top_row_templ = []
     row_num = delta
     for j in range(delta, M-1-delta):
-        top_row += [matrix[row_num][j]]
+        top_row_templ += [matrix[row_num][j]]
 
-    bottom_row = []
+    bottom_row_templ = []
     row_num = N-1-delta
     for j in range(1+delta, M-delta):
-        bottom_row += [matrix[row_num][j]]
+        bottom_row_templ += [matrix[row_num][j]]
 
+    # vertical segments of the "ring"
+    left_col = get_left_col_as_row(N,M,matrix,delta)
+    right_col = get_right_col_as_row(N,M,matrix,delta)
 
-    # here is a chance to make optimal sol
-    # combine vertical and horizontal segments into half-ring pieces
-    new_left_col = get_left_col_as_row(N,M,matrix,delta) + bottom_row
-    new_right_col = top_row + get_right_col_as_row(N,M,matrix,delta)
+    # rewrite left column and top row in matrix (1/2 of the "ring")
+    matrix_row_cnt = delta
+    col_ind_cnt = 0
+    for i in left_col:
+        if col_ind_cnt == 0:
+            matrix[matrix_row_cnt][delta:M-delta] = [i] + top_row_templ
+        else:
+            matrix[matrix_row_cnt][delta] = i
+        matrix_row_cnt  += 1
+        col_ind_cnt += 1
+            
+    # rewrite right column and bottop row in matrix (2/2 of the "ring")
+    matrix_row_cnt = 1+delta
+    col_ind_cnt = 0
+    for i in right_col:
+        if col_ind_cnt == len(right_col)-1:
+            matrix[matrix_row_cnt][delta:M-delta] = bottom_row_templ + [i]
+        else:
+            matrix[matrix_row_cnt][M-1-delta] = i
+        matrix_row_cnt  += 1
+        col_ind_cnt += 1
 
-    new_columns = [new_left_col, new_right_col]
-    print(new_columns)
-
-    get_rotated_ring(matrix, new_columns, delta)
     # no return, function changes initial matrix
 
 
