@@ -51,6 +51,28 @@ class Test_ex_24_sol(unittest.TestCase):
         ref = ['8']
         self.assertEqual(ex_24_sol.get_right_col_as_row(4,4,matrix,1), ref)
 
+    def test_func(self): # iter_rotate() + get_rotated_ring()
+        
+        matrix = [['1', '2', '3', '4'], 
+                  ['2', '3', '8', '5'], 
+                  ['3', '0', '5', '6'], 
+                  ['4', '5', '6', '7']]
+
+        ref_outer_ring = [['2', '1', '2', '3'], 
+                          ['3', '3', '8', '4'], 
+                          ['4', '0', '5', '5'], 
+                          ['5', '6', '7', '6']]
+
+        ref_inner_ring = [['2', '1', '2', '3'], 
+                          ['3', '0', '3', '4'], 
+                          ['4', '5', '8', '5'], 
+                          ['5', '6', '7', '6']]
+
+        ex_24_sol.iter_rotate(matrix, 4, 4, 0)
+        self.assertEqual(matrix, ref_outer_ring)
+        ex_24_sol.iter_rotate(matrix, 4, 4, 1)
+        self.assertEqual(matrix, ref_inner_ring)
+
     #def test_func(self):
     #    
     #    self.assertEqual(ex_24_sol.func(), )
