@@ -34,6 +34,23 @@ class Test_ex_24_sol(unittest.TestCase):
         ref = [[2,2]]
         self.assertEqual(ex_24_sol.get_rings(2,2), ref)
 
+    def test_get_cols_as_rows(self):
+        
+        matrix = [['1', '2', '3', '4'], 
+                  ['2', '3', '8', '5'], 
+                  ['3', '0', '5', '6'], 
+                  ['4', '5', '6', '7']]
+
+        ref = ['2', '3', '4']
+        self.assertEqual(ex_24_sol.get_left_col_as_row(4,4,matrix,0), ref)
+        ref = ['0']
+        self.assertEqual(ex_24_sol.get_left_col_as_row(4,4,matrix,1), ref)
+
+        ref = ['4', '5', '6']
+        self.assertEqual(ex_24_sol.get_right_col_as_row(4,4,matrix,0), ref)
+        ref = ['8']
+        self.assertEqual(ex_24_sol.get_right_col_as_row(4,4,matrix,1), ref)
+
     #def test_func(self):
     #    
     #    self.assertEqual(ex_24_sol.func(), )
