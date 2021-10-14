@@ -88,7 +88,7 @@ def turn_iter(matrix_src, N, M):
     # convert 'strings' into ['s', 't', 'r', 'i', 'n', 'g', 's']
     matrix = prepare_matrix(matrix_src)
     # get dimensions of the rings to be rotated at each step
-    rings = get_rings(num_rows, num_cols)
+    rings = get_rings(N, M)
     for i in rings:
         curr_num_rows = i[0]
         delta = (N - curr_num_rows) // 2
@@ -104,4 +104,4 @@ def MatrixTurn(matrix, num_rows, num_cols, turns_cnt):
     if turns_cnt == 0:
         return matrix
     else:
-        return MatrixTurn(turn_iter(matrix), num_rows, num_cols, turns_cnt-1)
+        return MatrixTurn(turn_iter(matrix, num_rows, num_cols), num_rows, num_cols, turns_cnt-1)
