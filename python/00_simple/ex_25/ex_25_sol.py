@@ -17,31 +17,34 @@
 Задача: написать функцию, которая находит 'ключевой ключ' и возвращает True, если он чётный.
 """
 
-def transform(data):
-    """ Реализация алгоритма обработки массива данных (трансформации) с заданием. """
-    output = []
-    for i, _ in enumerate(data):
-        if i == len(data)-1:
-            output.append(data[i])
-        else:
-            for j in range(0, len(data)-i-1):
-                k = i + j
-                output.append(max(data[j:k+1]))
-    return output
 
-def double_transform(data):
-    """Функция выводит результат двойной трасформации исходного массива."""
-    return transform(transform(data))
-
-def get_master_key(data):
-    """Функция выводит значение 'ключевого ключа'"""
-    master_key = 0
-    for i in double_transform(data):
-        master_key += i
-    return master_key
-
-def TransformTransform(data, data_length): # pylint: disable=
+def TransformTransform(data, data_length): # pylint: disable=c0103,w0613
     """Функция по заданию"""
+
+    def transform(data):
+        """ Реализация алгоритма обработки массива данных (трансформации) с заданием. """
+        output = []
+        for i, _ in enumerate(data):
+            if i == len(data)-1:
+                output.append(data[i])
+            else:
+                for j in range(0, len(data)-i-1):
+                    k = i + j
+                    output.append(max(data[j:k+1]))
+        return output
+
+    def double_transform(data):
+        """Функция выводит результат двойной трасформации исходного массива."""
+        return transform(transform(data))
+
+    def get_master_key(data):
+        """Функция выводит значение 'ключевого ключа'"""
+        master_key = 0
+        for i in double_transform(data):
+            master_key += i
+        return master_key
+
+
     if get_master_key(data) % 2 == 0:
         return True
     return False
