@@ -39,3 +39,9 @@ def get_master_key(data):
     for i in double_transform(data):
         master_key += i
     return master_key
+
+def TransformTransform(data, data_length): # pylint: disable=
+    """Функция по заданию"""
+    if get_master_key(data) % 2 == 0:
+        return True
+    return False

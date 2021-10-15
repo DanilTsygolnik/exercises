@@ -59,9 +59,10 @@ class Test_ex_25_sol(unittest.TestCase):
         ref = sum(data_double_transformed)
         self.assertEqual(ex_25_sol.get_master_key([1,2,3,4,5]), ref)
 
-    #def test_func(self):
-    #
-    #    self.assertEqual(ex_25_sol.func(), )
+    def test_TransformTransform(self):
+    
+        self.assertTrue(ex_25_sol.TransformTransform([1,2,3,4], 4))
+        self.assertFalse(ex_25_sol.TransformTransform([1,2,3,5], 4))
 
 
 if __name__ == "__main__":
