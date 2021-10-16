@@ -37,14 +37,16 @@ class Test_ex_26_sol(unittest.TestCase):
         self.assertEqual(ex_26_sol.choose_pairs("9===1===9="), [[1,4], [5,8]])
         self.assertEqual(ex_26_sol.choose_pairs("6===4xa===f5===eee6==afada=4"), [[1,4], [19,27]])
 
-    def test_chain_is_there(self):
+    def test_amount_is_there(self):
         
-        self.assertFalse(ex_26_sol.chain_is_there(target="=", location=""))
-        self.assertFalse(ex_26_sol.chain_is_there(target="=", location="abcd"))
-        self.assertFalse(ex_26_sol.chain_is_there(target="=", location="==ooo"))
+        self.assertFalse(ex_26_sol.amount_is_there(target="=", location=""))
+        self.assertFalse(ex_26_sol.amount_is_there(target="=", location="abcd"))
+        self.assertFalse(ex_26_sol.amount_is_there(target="=", location="==ooo"))
+        self.assertFalse(ex_26_sol.amount_is_there(target="=", location="====="))
+        self.assertFalse(ex_26_sol.amount_is_there(target="=", location="axxb6=====4x"))
 
-        self.assertTrue(ex_26_sol.chain_is_there(target="=", location="axxb6===4x"))
-        self.assertTrue(ex_26_sol.chain_is_there(target="=", location="==axxb6===4x"))
+        self.assertTrue(ex_26_sol.amount_is_there(target="=", location="axxb6===4x"))
+        self.assertTrue(ex_26_sol.amount_is_there(target="=", location="axxb6======4x"))
 
     def test_white_walkers(self):
 
@@ -82,7 +84,7 @@ class Test_ex_26_sol(unittest.TestCase):
         self.assertFalse(ex_26_sol.white_walkers("9abc1===9===1===9"))
         self.assertFalse(ex_26_sol.white_walkers("9==1===9===1===9"))
         self.assertFalse(ex_26_sol.white_walkers("axxb6===4xaf6===eee5"))
-        # кол-во = должно быть кратно 3 (если выявляются, то должны выявляться все) ????
+        # кол-во "=" должно быть кратно 3 (если выявляются, то должны выявляться все) ????
         self.assertFalse(ex_26_sol.white_walkers("6====4"))
         self.assertFalse(ex_26_sol.white_walkers("9====1===9===1===9"))
 

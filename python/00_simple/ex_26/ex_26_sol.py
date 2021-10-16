@@ -80,7 +80,7 @@ def choose_pairs(string):
             output.append(all_indexes[i])
     return output
 
-def chain_is_there(target, location, target_cnt=3):
+def amount_is_there(target, location, target_cnt=3):
     """
     Проверка на присутствие заданного кол-ва target'ов в строке.
     Функция возвращает True, если в интервале заданное кол-во найдено.
@@ -90,8 +90,8 @@ def chain_is_there(target, location, target_cnt=3):
     for i in location:
         if i == target:
             cnt += 1
-            if cnt == target_cnt:
-                return True
+    if cnt > 0 and cnt % target_cnt == 0:
+        return True
     return False
 
 def white_walkers(string):
@@ -101,7 +101,7 @@ def white_walkers(string):
         return False
     match_cnt = 0 # если кол-во совпадений совпадет с кол-вом пар чисел ==> True
     for i in search_intervals:
-        if chain_is_there(target="=", location=string[i[0]:i[1]]):
+        if amount_is_there(target="=", location=string[i[0]:i[1]]):
             match_cnt += 1
     if match_cnt == len(search_intervals):
         return True
