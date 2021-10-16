@@ -1,17 +1,16 @@
+# pylint: disable=c0103,c0114,c0115,c0116
 import unittest
 import ex_26_sol
 
 class Test_ex_26_sol(unittest.TestCase):
 
     def test_get_all_pairs(self):
-        
         self.assertEqual(ex_26_sol.get_all_pairs("5==ooooooo"), [])
         self.assertEqual(ex_26_sol.get_all_pairs("abc=7==hdj"), [])
         self.assertEqual(ex_26_sol.get_all_pairs("axxb6===4x"), [[6,4]])
         self.assertEqual(ex_26_sol.get_all_pairs("9===1===9="), [[9,1], [1,9]])
 
     def test_get_all_indexes(self):
-        
         #  0123456789
         # "5==ooooooo" --> []
         # "abc=7==hdj" --> []
@@ -24,13 +23,6 @@ class Test_ex_26_sol(unittest.TestCase):
         self.assertEqual(ex_26_sol.get_all_indexes("9===1===9="), [[1,4], [5,8]])
 
     def test_choose_pairs(self):
-        
-        #  0123456789
-        # "5==ooooooo" --> []
-        # "abc=7==hdj" --> []
-        # "axxb6===4x" --> [[5,8]]
-        # "9===1===9=" --> [[1,4], [5,8]]
-
         self.assertEqual(ex_26_sol.choose_pairs("5==ooooooo"), [])
         self.assertEqual(ex_26_sol.choose_pairs("abc=7==hdj"), [])
         self.assertEqual(ex_26_sol.choose_pairs("axxb6===4x"), [[5,8]])
@@ -38,7 +30,6 @@ class Test_ex_26_sol(unittest.TestCase):
         self.assertEqual(ex_26_sol.choose_pairs("6===4xa===f5===eee6==afada=4"), [[1,4], [19,27]])
 
     def test_amount_is_there(self):
-        
         self.assertFalse(ex_26_sol.amount_is_there(target="=", location=""))
         self.assertFalse(ex_26_sol.amount_is_there(target="=", location="abcd"))
         self.assertFalse(ex_26_sol.amount_is_there(target="=", location="==ooo"))
@@ -49,24 +40,6 @@ class Test_ex_26_sol(unittest.TestCase):
         self.assertTrue(ex_26_sol.amount_is_there(target="=", location="axxb6======4x"))
 
     def test_white_walkers(self):
-
-
-        #      |+++| -- chain
-        # "axxb6===4xaf5===eee5" => true
-
-        #  |++-      +|+| --> no chain 
-        # "5==ooooooo=5=5" => false
-
-        #      no chain    chain
-        #      |++-   +|  |+++    |
-        # "abc=7==hdjs=3gg1=======5" => true
-
-        # "aaS=8" => false
-
-        #  chain
-        #  |+++|
-        # "9===1===9===1===9" => true
-
         self.assertTrue(ex_26_sol.white_walkers("axxb6===4xaf5===eee5"))
         self.assertTrue(ex_26_sol.white_walkers("abc=7==hdjs=3gg1=======5"))
         self.assertTrue(ex_26_sol.white_walkers("9===1===9===1===9"))
@@ -84,7 +57,8 @@ class Test_ex_26_sol(unittest.TestCase):
         self.assertFalse(ex_26_sol.white_walkers("9abc1===9===1===9"))
         self.assertFalse(ex_26_sol.white_walkers("9==1===9===1===9"))
         self.assertFalse(ex_26_sol.white_walkers("axxb6===4xaf6===eee5"))
-        # кол-во "=" должно быть кратно 3 (если выявляются, то должны выявляться все) ????
+
+        # кол-во "=" должно быть кратно 3
         self.assertFalse(ex_26_sol.white_walkers("6====4"))
         self.assertFalse(ex_26_sol.white_walkers("9====1===9===1===9"))
 
