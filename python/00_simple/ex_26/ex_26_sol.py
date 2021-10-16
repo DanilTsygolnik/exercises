@@ -94,16 +94,15 @@ def chain_is_there(target, location, target_cnt=3):
                 return True
     return False
 
-#def white_walkers(string):
-#    """Функция по заданию"""
-#    numbers_pairs = get_pairs(string)
-#    print(numbers_pairs)
-#    if len(numbers_pairs) == 0:
-#        return False
-#    match_cnt = 0 # если кол-во совпадений совпадет с кол-вом пар чисел ==> True
-#    for i in numbers_pairs:
-#        if chain_is_there(target="=", location=string[i[0]:i[1]]):
-#            match_cnt += 1
-#    if match_cnt == len(numbers_pairs):
-#        return True
-#    return False
+def white_walkers(string):
+    """Функция по заданию"""
+    search_intervals = choose_pairs(string)
+    if len(search_intervals) == 0:
+        return False
+    match_cnt = 0 # если кол-во совпадений совпадет с кол-вом пар чисел ==> True
+    for i in search_intervals:
+        if chain_is_there(target="=", location=string[i[0]:i[1]]):
+            match_cnt += 1
+    if match_cnt == len(search_intervals):
+        return True
+    return False

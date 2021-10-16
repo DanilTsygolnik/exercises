@@ -46,45 +46,45 @@ class Test_ex_26_sol(unittest.TestCase):
         self.assertTrue(ex_26_sol.chain_is_there(target="=", location="axxb6===4x"))
         self.assertTrue(ex_26_sol.chain_is_there(target="=", location="==axxb6===4x"))
 
-    #def test_white_walkers(self):
+    def test_white_walkers(self):
 
 
-    #    #      |+++| -- chain
-    #    # "axxb6===4xaf5===eee5" => true
+        #      |+++| -- chain
+        # "axxb6===4xaf5===eee5" => true
 
-    #    #  |++-      +|+| --> no chain 
-    #    # "5==ooooooo=5=5" => false
+        #  |++-      +|+| --> no chain 
+        # "5==ooooooo=5=5" => false
 
-    #    #      no chain    chain
-    #    #      |++-   +|  |+++    |
-    #    # "abc=7==hdjs=3gg1=======5" => true
+        #      no chain    chain
+        #      |++-   +|  |+++    |
+        # "abc=7==hdjs=3gg1=======5" => true
 
-    #    # "aaS=8" => false
+        # "aaS=8" => false
 
-    #    #  chain
-    #    #  |+++|
-    #    # "9===1===9===1===9" => true
+        #  chain
+        #  |+++|
+        # "9===1===9===1===9" => true
 
-    #    self.assertTrue(ex_26_sol.white_walkers("axxb6===4xaf5===eee5"))
-    #    self.assertTrue(ex_26_sol.white_walkers("abc=7==hdjs=3gg1=======5"))
-    #    self.assertTrue(ex_26_sol.white_walkers("9===1===9===1===9"))
-    #    self.assertTrue(ex_26_sol.white_walkers("9=cd==1==ab=9=e==1=f=g=9"))
-    #    self.assertTrue(ex_26_sol.white_walkers("axxb6===4xaf5===eee6"))
-    #    self.assertTrue(ex_26_sol.white_walkers("axxb6===4"))
-    #    self.assertTrue(ex_26_sol.white_walkers("6===4"))
-    #    self.assertTrue(ex_26_sol.white_walkers("6===4xa===f5===eee6==afada=4"))
+        self.assertTrue(ex_26_sol.white_walkers("axxb6===4xaf5===eee5"))
+        self.assertTrue(ex_26_sol.white_walkers("abc=7==hdjs=3gg1=======5"))
+        self.assertTrue(ex_26_sol.white_walkers("9===1===9===1===9"))
+        self.assertTrue(ex_26_sol.white_walkers("9=cd==1==ab=9=e==1=f=g=9"))
+        self.assertTrue(ex_26_sol.white_walkers("axxb6===4xaf5===eee6"))
+        self.assertTrue(ex_26_sol.white_walkers("axxb6===4"))
+        self.assertTrue(ex_26_sol.white_walkers("6===4"))
+        self.assertTrue(ex_26_sol.white_walkers("6===4xa===f5===eee6==afada=4"))
 
-    #    self.assertFalse(ex_26_sol.white_walkers(""))
-    #    self.assertFalse(ex_26_sol.white_walkers("aaS=8"))
-    #    self.assertFalse(ex_26_sol.white_walkers("5==ooooooo=5=5"))
-    #    self.assertFalse(ex_26_sol.white_walkers("9abc1===9===1===9"))
-    #    self.assertFalse(ex_26_sol.white_walkers("9==1===9===1===9"))
-    #    self.assertFalse(ex_26_sol.white_walkers("9====1===9===1===9"))
-    #    self.assertFalse(ex_26_sol.white_walkers("axxb6===4xaf6===eee5"))
-    #    # кол-во = должно быть кратно 3 (если выявляютсяб то должны выявляться все) ????
-    #    self.assertFalse(ex_26_sol.white_walkers("6====4"))
-    #    self.assertFalse(ex_26_sol.white_walkers("6==4"))
-    #    self.assertFalse(ex_26_sol.white_walkers("6===4xa===f5===eee6==afada4"))
+        self.assertFalse(ex_26_sol.white_walkers(""))
+        self.assertFalse(ex_26_sol.white_walkers("aaS=8"))
+        self.assertFalse(ex_26_sol.white_walkers("6==4"))
+        self.assertFalse(ex_26_sol.white_walkers("6===4xa===f5===eee6==afada4"))
+        self.assertFalse(ex_26_sol.white_walkers("5==ooooooo=5=5"))
+        self.assertFalse(ex_26_sol.white_walkers("9abc1===9===1===9"))
+        self.assertFalse(ex_26_sol.white_walkers("9==1===9===1===9"))
+        self.assertFalse(ex_26_sol.white_walkers("axxb6===4xaf6===eee5"))
+        # кол-во = должно быть кратно 3 (если выявляются, то должны выявляться все) ????
+        self.assertFalse(ex_26_sol.white_walkers("6====4"))
+        self.assertFalse(ex_26_sol.white_walkers("9====1===9===1===9"))
 
 
 if __name__ == "__main__":
