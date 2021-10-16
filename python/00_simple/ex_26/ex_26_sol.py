@@ -10,7 +10,8 @@
 Т.е. строку вида '===123abcd' на вход функция точно не получит.
 
 Функция возвращает True при условии:
-в строке между каждой парой чисел, сумма которых равна 10, есть цепь из трех символов "=".
+в строке между каждой парой чисел, сумма которых равна 10, есть три и более символов "=",
+при этом кол-во "=" должно быть кратно трем.???
 
 "axxb6===4xaf5===eee5" => true (2 пары, три знака '=' в 2/2)
 "5==ooooooo=5=5" => false (2 пары, три знака '=' в 1/2)
@@ -20,12 +21,34 @@
 """
 
 
-def get_pairs(string):
+def get_all_pairs(string):
+    """
+    Функция выводит список вида [[a,b], [c,d], ...]].
+    Список содержит пары цифр, между которыми осуществляется поиск "=".
+    """
+    pairs = []
+    head = None
+    tail = None
+    numbers = {}
+    for i in range(0,10):
+        numbers[str(i)] = int(i)
+    for i in string:
+        if i in numbers:
+            if head is not None:
+                if tail is not None:
+                    head = tail
+                tail = i
+                pairs.append([numbers[head], numbers[tail]])
+            else:
+                head = i
+    return pairs
+
+def get_all_indexes(string):
     """
     Функция выводит список вида [[a,b], [c,d], ...]].
     Список содержит пары чисел, которые задают интервалы между цифрами в string.
     """
-    pairs = []
+    indexes = []
     head = None
     tail = None
     numbers = {}
@@ -38,11 +61,24 @@ def get_pairs(string):
                 if tail is not None:
                     head = tail
                 tail = index_cnt
-                pairs.append([head+1, tail])
+                indexes.append([head+1, tail])
             else:
                 head = index_cnt
         index_cnt += 1
-    return pairs
+    return indexes
+
+def choose_pairs(string):
+    """
+    Функция возвращает список вида [[a,b], [c,d], ...]].
+    Список содержит пары индексов для эл-тов all_pairs из string, сумма которых равна 10.
+    """
+    output = []
+    all_pairs = get_all_pairs(string)
+    all_indexes= get_all_indexes(string)
+    for i, _ in enumerate(all_pairs):
+        if all_pairs[i][0] + all_pairs[i][1] == 10:
+            output.append(all_indexes[i])
+    return output
 
 def chain_is_there(target, location, target_cnt=3):
     """
@@ -60,9 +96,14 @@ def chain_is_there(target, location, target_cnt=3):
 
 #def white_walkers(string):
 #    """Функция по заданию"""
-#
 #    numbers_pairs = get_pairs(string)
+#    print(numbers_pairs)
+#    if len(numbers_pairs) == 0:
+#        return False
+#    match_cnt = 0 # если кол-во совпадений совпадет с кол-вом пар чисел ==> True
 #    for i in numbers_pairs:
-#        str_btw_numbers = string[i[0]:i[1]]
-#    ...
+#        if chain_is_there(target="=", location=string[i[0]:i[1]]):
+#            match_cnt += 1
+#    if match_cnt == len(numbers_pairs):
+#        return True
 #    return False
