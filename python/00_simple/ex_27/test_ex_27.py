@@ -52,6 +52,40 @@ class Test_ex_27_sol(unittest.TestCase):
         self.assertEqual(ex_27_sol.get_combo([1,2,3,4], 1, 3), [1,4,3,2])
         self.assertEqual(ex_27_sol.get_combo([1,2,3,4], 1, 2), [1,3,2,4])
 
+    def test_get_combos_rule_two(self):
+        
+        ref = {"":[]} # test 0
+        self.assertEqual(ex_27_sol.get_combos_rule_two([]).keys(), ref.keys())
+        
+        ref = {"1":[1]} # test 1
+        self.assertEqual(ex_27_sol.get_combos_rule_two([1]).keys(), ref.keys())
+        
+        ref = {"12":[1,2], "21":[2,1]} # test 2
+        self.assertEqual(ex_27_sol.get_combos_rule_two([1,2]).keys(), ref.keys())
+
+        ref = {"123":[1,2,3], "213":[2,1,3], "132":[1,3,2], "321":[3,2,1]} # test 3
+        self.assertEqual(ex_27_sol.get_combos_rule_two([1,2,3]).keys(), ref.keys())
+
+        ref = { '1234': [1, 2, 3, 4], 
+                '4321': [4, 3, 2, 1], 
+                '3214': [3, 2, 1, 4], 
+                '1432': [1, 4, 3, 2], 
+                '2134': [2, 1, 3, 4], 
+                '1324': [1, 3, 2, 4], 
+                '1243': [1, 2, 4, 3]}
+        self.assertEqual(ex_27_sol.get_combos_rule_two([1,2,3,4]).keys(), ref.keys())
+
+    def test_rule_two(self):
+        
+        self.assertTrue(ex_27_sol.rule_two([1]))
+        self.assertTrue(ex_27_sol.rule_two([1,2]))
+        self.assertTrue(ex_27_sol.rule_two([2,1]))
+        self.assertTrue(ex_27_sol.rule_two([2,1,3]))
+        self.assertTrue(ex_27_sol.rule_two([1,2,3]))
+        self.assertTrue(ex_27_sol.rule_two([4,3,2,1]))
+        self.assertFalse(ex_27_sol.rule_two([4,2,3,1]))
+        self.assertFalse(ex_27_sol.rule_two([3,1,2]))
+
     #def test_func(self):
     #    
     #    self.assertEqual(ex_27_sol.func(), )

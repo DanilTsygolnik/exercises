@@ -75,3 +75,27 @@ def get_combo(data, head=0, tail=0):
         new_data[index_cnt] = i
         index_cnt += 1
     return new_data
+
+def get_combos_rule_two(data):
+    """Функция возвращает словарь всех комбинаций, которые можно получить по правилу 2."""
+    tail_ind_cnt = len(data)-1
+    ind_limit = len(data)
+    combos = {str_from_list(data):data}
+    while tail_ind_cnt > 0:
+        curr_tail_ind = tail_ind_cnt
+        curr_head_ind = 0
+        while curr_tail_ind < ind_limit:
+            temp_data = data.copy()
+            combo = get_combo(temp_data, curr_head_ind, curr_tail_ind)
+            combos[str_from_list(combo)] = combo
+            curr_tail_ind += 1
+            curr_head_ind += 1
+        tail_ind_cnt -= 1
+    return combos 
+
+def rule_two(data):
+    """Функция возвращает true, если массив можно упорядочить однократным применением правила 2"""
+    sorted_key = str_from_list(sorted(data))
+    if sorted_key in get_combos_rule_two(data):
+        return True
+    return False
