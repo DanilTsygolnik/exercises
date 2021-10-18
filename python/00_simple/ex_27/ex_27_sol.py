@@ -56,3 +56,10 @@ def get_combos_rule_one(data):
             curr_head_ind += 1
         tail_ind_cnt -= 1
     return combos
+
+def rule_one(data):
+    """Функция возвращает true, если массив можно упорядочить однократным применением правила 1"""
+    sorted_key = str_from_list(sorted(data))
+    if sorted_key in get_combos_rule_one(data):
+        return True
+    return False
