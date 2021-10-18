@@ -5,6 +5,7 @@
 Функция возвращает true, если массив можно упорядочить однократным применением одного из правил:
     1. Поменять местами два произвольных элемента массива;
     2. Изменить на обратный порядок произвольной последовательной цепочки элементов в массиве.
+Если перестановки невозможны, или массив уже отсортирован - false.
 
 Например, на входе
 
@@ -91,11 +92,18 @@ def get_combos_rule_two(data):
             curr_tail_ind += 1
             curr_head_ind += 1
         tail_ind_cnt -= 1
-    return combos 
+    return combos
 
 def rule_two(data):
     """Функция возвращает true, если массив можно упорядочить однократным применением правила 2"""
     sorted_key = str_from_list(sorted(data))
     if sorted_key in get_combos_rule_two(data):
         return True
+    return False
+
+def Football(data, data_length): # pylint: disable=c0103
+    """Функция по заданию"""
+    if data_length > 1 and data != sorted(data):
+        if rule_one(data) or rule_two(data):
+            return True
     return False
