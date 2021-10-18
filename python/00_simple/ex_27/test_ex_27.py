@@ -19,6 +19,20 @@ class Test_ex_27_sol(unittest.TestCase):
         self.assertEqual(ex_27_sol.str_from_list([1]), "1")
         self.assertEqual(ex_27_sol.str_from_list([1,2,3,4]), "1234")
 
+    def test_get_combos_rule_one(self):
+        
+        ref = {"":[]} # test 0
+        self.assertEqual(ex_27_sol.get_combos_rule_one([]), ref.keys())
+        
+        ref = {"1":[1]} # test 1
+        self.assertEqual(ex_27_sol.get_combos_rule_one([1]), ref.keys())
+        
+        ref = {"12":[1,2], "21":[2,1]} # test 3
+        self.assertEqual(ex_27_sol.get_combos_rule_one([1,2]), ref.keys())
+
+        ref = {"123":[1,2,3], "213":[2,1,3], "132":[1,3,2], "321":[3,2,1]} # test 4
+        self.assertEqual(ex_27_sol.get_combos_rule_one([1,2,3]), ref.keys())
+
     #def test_func(self):
     #    
     #    self.assertEqual(ex_27_sol.func(), )

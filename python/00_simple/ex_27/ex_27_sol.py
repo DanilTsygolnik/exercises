@@ -29,16 +29,28 @@
 """
 
 def str_from_list(data_list):
+    """
+    Функция выводит строку, состоящую из элементов списка.
+    Будет использована для получения ключей для словаря комбинаций.
+    """
     output = ""
     for i in data_list:
         output = "".join([output, str(i)])
     return output
 
-#def get_combos(data):
-#    """
-#    Функция возвращает словарь всех комбинаций, которые можно получить по правилу 1
-#    """
-#    tail_ind_cnt = len(data)-1
-#    ind_limit = len(data)
-#    combos = {}
-
+def get_combos_rule_one(data):
+    """Функция возвращает словарь всех комбинаций, которые можно получить по правилу 1."""
+    tail_ind_cnt = len(data)-1
+    ind_limit = len(data)
+    combos = {str_from_list(data):data}
+    while tail_ind_cnt > 0:
+        curr_tail_ind = tail_ind_cnt
+        while curr_tail_ind < ind_limit:
+            temp_data = data
+            new_head = temp_data[curr_tail_ind]
+            temp_data[curr_tail_ind] = temp_data[0]
+            temp_data[0] = new_head
+            combos[str_from_list(temp_data)] = temp_data
+            curr_tail_ind += 1
+        tail_ind_cnt -= 1
+    return combos.keys()
