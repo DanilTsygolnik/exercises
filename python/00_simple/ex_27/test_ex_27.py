@@ -44,6 +44,14 @@ class Test_ex_27_sol(unittest.TestCase):
         self.assertFalse(ex_27_sol.rule_one([3,1,2]))
         self.assertFalse(ex_27_sol.rule_one([4,3,2,1]))
 
+    def test_get_combo(self):
+        
+        self.assertEqual(ex_27_sol.get_combo([0]), [0])
+        self.assertEqual(ex_27_sol.get_combo([1]), [1])
+        self.assertEqual(ex_27_sol.get_combo([1,2,3,4]), [1,2,3,4])
+        self.assertEqual(ex_27_sol.get_combo([1,2,3,4], 1, 3), [1,4,3,2])
+        self.assertEqual(ex_27_sol.get_combo([1,2,3,4], 1, 2), [1,3,2,4])
+
     #def test_func(self):
     #    
     #    self.assertEqual(ex_27_sol.func(), )
