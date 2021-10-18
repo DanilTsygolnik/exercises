@@ -45,12 +45,14 @@ def get_combos_rule_one(data):
     combos = {str_from_list(data):data}
     while tail_ind_cnt > 0:
         curr_tail_ind = tail_ind_cnt
+        curr_head_ind = 0
         while curr_tail_ind < ind_limit:
-            temp_data = data
+            temp_data = data.copy()
             new_head = temp_data[curr_tail_ind]
-            temp_data[curr_tail_ind] = temp_data[0]
-            temp_data[0] = new_head
+            temp_data[curr_tail_ind] = temp_data[curr_head_ind]
+            temp_data[curr_head_ind] = new_head
             combos[str_from_list(temp_data)] = temp_data
             curr_tail_ind += 1
+            curr_head_ind += 1
         tail_ind_cnt -= 1
-    return combos.keys()
+    return combos
