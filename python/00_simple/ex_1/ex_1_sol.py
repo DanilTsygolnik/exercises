@@ -1,28 +1,27 @@
+"""
+Написать функцию squirrel(N), которая возвращает первую цифру факториала N!
+"""
 def squirrel(N):
-
-    def fact(n):
-    
-        def iter(prod, cnt, val):
-            if val == 0 or val == 1:
+    def fact(number):
+        def fact_iter(prod, cnt, val):
+            if val in (0, 1):
                 return 1
-            elif cnt > val:
+            if cnt > val:
                 return prod
-            else:
-                return iter ((prod * cnt), (cnt + 1), val)
-        
-        return iter(1, 1, n)
-    
+            return fact_iter((prod * cnt), (cnt + 1), val)
+
+        return fact_iter(1, 1, number)
+
     def emeralds(k):
+        """Функция возвращает первую цифру факториала k!"""
         if k == 0:
             return 0
-        elif k < 10:
+        if k < 10:
             return k
-        else:
-            return emeralds(k // 10)
+        return emeralds(k // 10)
 
     if N < 0:
         raise ValueError("N must be equal to or bigger than 0")
-    elif type(N) != type(1):
+    if isinstance(N, type(1)) is False:
         raise ValueError("N must be integer")
-    else:
-        return emeralds(fact(N))
+    return emeralds(fact(N))
