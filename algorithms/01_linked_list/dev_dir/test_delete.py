@@ -49,7 +49,7 @@ class TestLinkedList(unittest.TestCase):
                 for i in range(13):
                     s_list.add_in_tail(memory_slots[i])
                 nodes_val_ref = [0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0]
-                s_list.delete(1, remove_all=False)
+                s_list.delete(1)
                 nodes_val_after_del = s_list.print_all_nodes(as_list=True) 
             
             #case_id = 2, remove_all=True -- удаление всех найденных узлов со значением node.value == 1
@@ -74,7 +74,7 @@ class TestLinkedList(unittest.TestCase):
                 for i in range(7, 13):
                     s_list.add_in_tail(memory_slots[i])
                 nodes_val_ref = [1, 1, 0, 0, 0]
-                s_list.delete(1, remove_all=False)
+                s_list.delete(1)
                 nodes_val_after_del = s_list.print_all_nodes(as_list=True)
         
             #case_id = 4, remove_all=True
@@ -98,7 +98,7 @@ class TestLinkedList(unittest.TestCase):
                 for i in range(4, 10):
                     s_list.add_in_tail(memory_slots[i])
                 nodes_val_ref = [0, 0, 0, 1, 1]
-                s_list.delete(1, remove_all=False)
+                s_list.delete(1)
                 nodes_val_after_del = s_list.print_all_nodes(as_list=True)
             
             #case_id = 6, remove_all=True
@@ -124,7 +124,7 @@ class TestLinkedList(unittest.TestCase):
                     s_list.add_in_tail(memory_slots[i])
                 # test remove_all=False
                 nodes_val_ref = [1, 1]
-                s_list.delete(1, remove_all=False)
+                s_list.delete(1)
                 nodes_val_after_del = s_list.print_all_nodes(as_list=True)
                 self.assertEqual(nodes_val_after_del, nodes_val_ref) 
                 # test remove_all
