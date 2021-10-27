@@ -39,3 +39,14 @@ def get_combos(num_obj, values):
     for i in values:
         combos[i] = [i]
     return func_iter(combos, 1, values, num_obj)
+
+def brackets(array):
+    combos = []
+    for i in range(1, len(array)):
+        head = 0
+        tail = i
+        while tail < len(array):
+            combos.append("".join(array[head:tail+1]))
+            head += 1
+            tail += 1
+    return combos

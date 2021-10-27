@@ -1,5 +1,6 @@
 import unittest
 from sol import get_combos
+from sol import brackets
 
 class Test(unittest.TestCase):
 
@@ -24,6 +25,21 @@ class Test(unittest.TestCase):
                 result.append("".join(i))
             print(f"{result} -- {len(result)}")
         #self.assertEqual(result, ref)
+
+    def test_brackets(self):
+        """
+        в функцию get_combos добавить exception:
+        - на вход должно поступать не менее двух эл-тов для будущего выражения
+
+        здесь
+        м.б. стоит поправить вывод для списка из одно эл-та
+        """
+        print(brackets([]))
+        print(brackets(['1']))
+        print(brackets(['1','2']))
+        print(brackets(['1','2','3']))
+        print(brackets(['1','2','3','4']))
+        print(brackets(['1','2','3','4', '5']))
 
 if __name__=="__main__":
     unittest.main()
