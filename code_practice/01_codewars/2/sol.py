@@ -69,7 +69,6 @@ def max_expr_val(args, sig_combos):
                 expressions[expr] = eval(expr)
             head += 1
             tail += 1
-    print(expressions.keys())
     return max(expressions.values())
 
 #def expression_matter(a, b, c):
