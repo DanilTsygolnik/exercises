@@ -4,27 +4,17 @@ from sol import brackets
 
 class Test(unittest.TestCase):
 
-    def test_(self):
-        ref = ['aa', 'ab', 'ba', 'bb']
-        result = []
-        for i in get_combos(2, ['a', 'b']).values():
-            result.append("".join(i))
-        self.assertEqual(result, ref)
+    def test_get_combos(self):
+        cases = ((1, ['1', 2]), (0, 'abcd'))
+        for i in cases:
+            with self.assertRaises(AssertionError):
+                get_combos(*i)
 
-    def test_(self):
-        """
-        Бесконечный цикл при k=0
-        Нужно обязательно добавить проверку на предмет:
-        - values=[] -- <type list>
-        - i for i in values: type(i)==type('string')
-        """
-        ref = []
-        for k in range(1,5):
-            result = []
-            for i in get_combos(k, ['a', 'b', 'c']).values():
-                result.append("".join(i))
-            print(f"{result} -- {len(result)}")
-        #self.assertEqual(result, ref)
+        self.assertEqual(get_combos(0, ['a', 'b']), [])
+        ref = [['a'], ['b']]
+        self.assertEqual(get_combos(1, ['a', 'b']), ref)
+        ref = [['a', 'a'], ['a', 'b'], ['b', 'a'], ['b', 'b']]
+        self.assertEqual(get_combos(2, ['a', 'b']), ref)
 
     def test_brackets(self):
         """
