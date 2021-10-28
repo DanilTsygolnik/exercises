@@ -46,18 +46,11 @@ def get_combos(num_obj, values):
         combos.append([i])
     return func_iter(combos, 1, values, num_obj)
 
-def brackets(array):
-    combos = []
-    for i in range(1, len(array)):
-        head = 0
-        tail = i
-        while tail < len(array):
-            combos.append("".join(array[head:tail+1]))
-            head += 1
-            tail += 1
-    return combos
-
 def max_expr_val(args, sig_combos):
+    assert type(args)==type([])
+    for i in args:
+        assert type(i)==type('string')
+    assert type(sig_combos)==type([])
     expressions = {}
     for i in range(1,len(args)):
         head = 0
