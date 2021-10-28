@@ -60,11 +60,12 @@ def max_expr_val(args, sig_combos):
             args_tmp[head] = "".join(("(", args_tmp[head]))
             args_tmp[tail] = "".join((args_tmp[tail], ")"))
             for k in sig_combos:
+                draft = args_tmp.copy()
                 cnt = 1
                 for j in k:
-                    args_tmp.insert(cnt, j)
+                    draft.insert(cnt, j)
                     cnt += 2
-                expr = "".join(args_tmp)
+                expr = "".join(draft)
                 expressions[expr] = eval(expr)
             head += 1
             tail += 1
