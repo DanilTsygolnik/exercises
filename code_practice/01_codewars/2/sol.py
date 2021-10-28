@@ -71,4 +71,8 @@ def max_expr_val(args, sig_combos):
             tail += 1
     return max(expressions.values())
 
-#def expression_matter(a, b, c):
+def expression_matter(a, b, c):
+    args = [str(a), str(b), str(c)]
+    signs = ['+', '*']
+    sig_combos = get_combos(len(args)-1, signs)
+    return max_expr_val(args, sig_combos)
