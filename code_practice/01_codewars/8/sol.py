@@ -15,10 +15,11 @@ https://www.codewars.com/kata/58649884a1659ed6cb000072/
 
 def update_light(light):
     assert isinstance(light, type(""))
+    signals = {
+                "green":"yellow",
+                "yellow":"red",
+                "red":"green"
+              }
     light = light.casefold()
-    assert light in ["green", "yellow", "red"]
-    if light=="green":
-        return "yellow"
-    if light=="yellow":
-        return "red"
-    return "green"
+    assert light in signals
+    return signals[light]
