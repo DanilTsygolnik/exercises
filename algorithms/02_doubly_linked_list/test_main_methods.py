@@ -63,5 +63,15 @@ class TestFindall(unittest.TestCase):
         s_list = get_linked(nodes)
         self.assertEqual(s_list.find_all(1), [nodes[3], nodes[5]])
 
+class TestDelete(unittest.TestCase):
+
+    def test_one_node_pos(self):
+        nodes = [Node(1)]
+        s_list = get_linked(nodes)
+        s_list.delete(1)
+        self.assertIs(s_list.head, None)
+        self.assertIs(s_list.tail, None)
+
+
 if __name__=="__main__":
     unittest.main()
