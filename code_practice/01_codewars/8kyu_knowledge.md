@@ -1,5 +1,21 @@
 ---
 
+Std functions:
+
+sum(iterable)
+min(iterable)
+max(iterable)
+sorted()
+
+---
+
+String methods:
+
+.split()
+.casefold()
+
+---
+
 [Kata 15](https://www.codewars.com/kata/55a70521798b14d4750000a4/)
       
 [%s and .format()](https://pyformat.info/)
