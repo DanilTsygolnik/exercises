@@ -18,3 +18,10 @@ Convert number to a reversed array of digits.
 
 ---
 
+[Kata 18](https://www.codewars.com/kata/577bd026df78c19bca0002c0)
+
+Make a dictionary
+Make a list of chars from a string
+Make a new string from list chars
+
+---
