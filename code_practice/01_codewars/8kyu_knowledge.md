@@ -25,3 +25,9 @@ Make a list of chars from a string
 Make a new string from list chars
 
 ---
+
+[Kata 19](https://www.codewars.com/kata/5966e33c4e686b508700002d)
+
+int("000043") --> 43
+
+---
