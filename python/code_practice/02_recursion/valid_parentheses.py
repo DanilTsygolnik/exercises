@@ -1,52 +1,58 @@
-def iter_func(num_curr_step, iter_steps_num, parentheses, valid_num, invalid_num):
+def iter_func(valid_pairs_num, invalid_pairs_num, strict_invalid_pairs_num, num_curr_step, parens):
+    if parens == []:
+        # анализируем результаты (счетчики пар)
+        # only valid pairs
+        if invalid_pairs_num == 0 and strict_invalid_pairs_num == 0:
+            return True
+        if invalid_pairs_num != 0:
+            # 3.1
+            if strict_invalid_pairs_num == 0:
+                if invalid_pairs_num <= valid_pairs_num:
+                    return True
+                return False
+            # 3.3?
+            if strict_invalid_pairs_num % 2 == 0 and \
+               strict_invalid_pairs_num > invalid_pairs_num:
+                return True
+            return False
+        # 3.2
+        if strict_invalid_pairs_num % 2 == 0 and \
+           strict_invalid_pairs_num > valid_pairs_num:
+            return True
+        return False
 
-    # записываем комбинацию рассматриваемой пары скобок в переменную curr_pair
-    curr_pair = "".join([parentheses[0], parentheses[-1]])
+    curr_pair = "".join([parens[0], parens[-1]]) # подготовить текущую пару для проверки
 
     if num_curr_step == 1:
-        if curr_pair != "()": # проверка внешней пары скобок:
+        if curr_pair != "()":
             return False
-        if iter_steps_num == 1: # скобок всего 2, и они валидные ==> вернуть окончательный ответ
+        if len(parens) == 2:
             return True
-        return iter_func(num_curr_step+1, # переход к сл. итерации \
-                         iter_steps_num, \
-                         parentheses[1:-1], # исключаем из рассмотрения проверенные скобки \
-                         valid_num+1, # обновляем счетчик валидных пар \
-                         invalid_num)
+        # иначе переходим к сл. шагу итерации
+        return iter_func(valid_pairs_num+1, # обновляем счетчика валидных пар \
+                         invalid_pairs_num, strict_invalid_pairs_num, # невалидных пар пока нет \
+                         num_curr_step+1, # обновим счетчик, чтобы далее не проверять это условие \
+                         parens[1:-1]) # исключаем проверенную пару скобок из рассмотрения 
 
-    # действия на втором и последующих шагах итерации
-    if not curr_pair in ["()", ")("]: # если curr_pair не "()" и не ")(":
-        return False # т.к. скобок четное кол-во, то "(" и ")" должно быть строго поровну
-    if curr_pair == "()":
-        valid_num += 1
-    else:
-        invalid_num += 1
-    if num_curr_step != iter_steps_num: # если шаг_итерации не последний:
-        return iter_func(num_curr_step+1, iter_steps_num, parentheses[1:-1], \
-                         valid_num, # текущие значения счетчиков валидных ... \
-                         invalid_num) # ... и невалидных пар
-
-    # иначе, на последнем шаге проводим анализ соотношения числа валидных и невалидных пар
-    if iter_steps_num % 2 == 0: # если при четном числе шагов итерации:
-        if valid_num >= invalid_num:
-            return True
-        return False
-    # иначе, при нечетном числе шагов
-    if valid_num < invalid_num:
-        return False
-    return True
+    # на остальных шагах считаем пары "()", ")(", "((", "))"
+    if curr_pair == "()": # увеличиваем счетчик валидных
+        return iter_func(valid_pairs_num+1, invalid_pairs_num, strict_invalid_pairs_num, num_curr_step+1, parens[1:-1])
+    if curr_pair == ")(": # увеличиваем счетчик невалидных
+        return iter_func(valid_pairs_num, invalid_pairs_num+1, strict_invalid_pairs_num, num_curr_step+1, parens[1:-1])
+    # иначе увеличиваем счетчик строго невалидных
+    return iter_func(valid_pairs_num, invalid_pairs_num, strict_invalid_pairs_num+1, num_curr_step+1, parens[1:-1])
 
 def valid_parentheses(string):
-
     parentheses = []
-    parentheses_cnt = 0
+    left_paren_num = 0
+    right_paren_num = 0
     for c in string.strip(): # пройти по строке, собрать скобки
         if c in "()":
             parentheses.append(c)
-            parentheses_cnt += 1
-    if parentheses_cnt % 2 == 0:
-        if parentheses_cnt == 0:
-            return True
-        iter_steps_num = parentheses_cnt // 2
-        return iter_func(1, iter_steps_num, parentheses, 0, 0)
+            if c == "(":
+                left_paren_num += 1
+            else:
+                right_paren_num = 0
+    if left_paren_num == right_paren_num:
+        return iter_func(0,0,0, 1, parentheses)
     return False
