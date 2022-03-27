@@ -77,6 +77,8 @@ class CompaignMap:
         self.index_y_max = MAP_HEIGHT-1
         self.index_x_max = MAP_WIDTH-1
         self.grid = create_squares(self)
+        self.capture_today = []
+        self.capture_next_day = []
 
     def get_squares_indices(self):
         squares_ind = []
@@ -86,3 +88,65 @@ class CompaignMap:
                 x = square.get_index_x()
                 squares_ind.append([y,x])
         return squares_ind
+
+    def squares_from_coord(self, coord_list):
+        # coord_list = [ [y1,x1], [y2,x2], ... ]
+        squares_list = []
+        for item in coord_list:
+            index_y = item[0]
+            index_x = item[1]
+            square = self.grid[index_y][index_x]
+            squares_list.append(square)
+        return squares_list
+
+    def capture(self, square):
+        # метод класса Square
+        square.capture()
+        # добавляю координаты узла
+
+    def prepare_for_next_day(self, indices_xy_manual=None):
+        if indices_xy_manual is None:
+            self.capture_today = self.capture_next_day.copy()
+            self.capture_next_day = []
+        else:
+            self.capture_today = indices_xy_manual
+            self.capture_next_day = []
+
+def ConquestCampaign(MAP_HEIGHT,  MAP_WIDTH, NUM_LANDING_SPOTS, LANDING_COORD):
+
+    def coord_prep(MAP_HEIGHT,  MAP_WIDTH, NUM_LANDING_SPOTS, LANDING_COORD):
+        val_index = 1
+        val_index_max = NUM_LANDING_SPOTS
+        landing_coord_correct = []
+        while val_index <= val_index_max:
+            index_y = LANDING_COORD[val_index - 1] - 1
+            index_x = LANDING_COORD[val_index] - 1
+            no_duplicates = not [index_y, index_x] in landing_coord_correct
+            if no_duplicates:
+                landing_coord_correct.append([index_y, index_x])
+            val_index += 2
+        return landing_coord_correct
+
+    def count_compaign_days(compaign_map, num_compaign_days):
+        all_squares_captured = ( compaign_map.capture_today == [] )
+        if all_squares_captured:
+            return num_compaign_days
+        squares_to_capture = compaign_map.squares_from_coord(self.capture_today)
+        for square in squares_to_capture:
+            compaign_map.capture(square)
+        compaign_map.prepare_for_next_day()
+        return count_compaign_days(compaign_map, num_compaign_days+1)
+
+
+    # input data validation
+    input_data_is_valid = all([ MAP_HEIGHT >= 1,
+                                MAP_WIDTH >= 1, 
+                                NUM_LANDING_SPOTS >= 1,
+                                len(LANDING_COORD) == 2*NUM_LANDING_SPOTS ])
+    assertTrue(input_data_is_valid)
+
+    compaign_map = CompaignMap(MAP_HEIGHT,  MAP_WIDTH, NUM_LANDING_SPOTS, LANDING_COORD)
+    checked_landing_coord = coord_prep(MAP_HEIGHT,  MAP_WIDTH, NUM_LANDING_SPOTS, LANDING_COORD)
+    compaign_map.prepare_for_next_day(checked_landing_coord)
+    num_compaign_days = 1
+    return count_compaign_days(compaign_map, num_compaign_days)
