@@ -41,6 +41,12 @@ class Square:
         self.__captured = False
         self.__neighbors = find_neighbors(self, compaign_map)
 
+    def get_index_y(self):
+        return self.__index_y
+
+    def get_index_x(self):
+        return self.__index_x
+
     def get_neighbors(self):
         return self.__neighbors
 
@@ -49,8 +55,34 @@ class CompaignMap:
 
     def __init__(self, MAP_HEIGHT=1, MAP_WIDTH=1):
 
+        def create_squares(compaign_map):
+
+            def create_row(row_num, compaign_map):
+                row_templ = []
+                for col_num in range(0, compaign_map.width):
+                    row_templ.append(Square(row_num, col_num, compaign_map))
+                return row_templ
+
+
+            grid_with_squares = []
+            # формируем сетку из готовых рядов ячеек
+            for row_num in range(0, compaign_map.height):
+                grid_with_squares.append(create_row(row_num, compaign_map))
+            return grid_with_squares
+
+
         self.height = MAP_HEIGHT
         self.width = MAP_WIDTH
         self.area = MAP_HEIGHT*MAP_WIDTH
         self.index_y_max = MAP_HEIGHT-1
         self.index_x_max = MAP_WIDTH-1
+        self.grid = create_squares(self)
+
+    def get_squares_indices(self):
+        squares_ind = []
+        for row in self.grid:
+            for square in row:
+                y = square.get_index_y()
+                x = square.get_index_x()
+                squares_ind.append([y,x])
+        return squares_ind
